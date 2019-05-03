@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Twitter_analysis</title>
+    <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename = 'images/favicon.ico') }}">
+    <script type = "text/javascript" src = "{{ url_for('static', filename = 'js_files/main.js') }}" ></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/style.css') }}">
+    <style> button{
+        margin: 3px;
+        background-color: #00adee;
+        border-radius: 20px;
+        width: 200px;
+        height: 50px;
+        outline: none;
+        border: 0;
+        color: white;
+        font-family: "Segoe UI", fantasy;
+        font-size: 15px;
+        }
+        button:hover{
+        background-color: #1da1f2;
+        }
+        button:active{
+        background-color: crimson;
+        }
+    </style>
+</head>
+<body>
+    <form id="search-block" method="post">
+        <label for="main-search"></label>
+        <input id="main-search" autocomplete="off" type="text" name="table">
+        <input type="submit" id="submit_form" value="+" onclick="return create_table_form()">
+    </form>
+    <div id="add_block">
+        <form id="add_users" method="post">
+            <label for="add_users_input"></label>
+            <input id="add_users_input" autocomplete="off" type="text" name="user">
+            <input type="submit" id="submit_add_users" value="ADD">
+            <input type="submit" id="submit_create_table" value="CREATE TABLE">
+        </form>
+    </div>
+    <div id="list-block">
+        <ul>
+        {% for i in data %}
+            <li>
+                <div>
+                    <ul>
+                        {% for j in data.get(i) %}
+                        <li>
+                            {{j}}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <button>
+                    {{i}}
+                </button>
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
